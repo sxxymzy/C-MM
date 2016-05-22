@@ -6,7 +6,7 @@ const int T0 = 7;  // constant of T0
 
 bit_matrix _correlation_calculation(bit_matrix bit_matrix_1, int k, int rows_count){
     // step 2,3,4, loop CAL_COUNT times
-    vector< vector<double> > _double_matrix_2 = new_matrix<vector<vector<double> >, vector<double> >(rows_count, T0);
+    vector< vector<double> > _double_matrix_2 = new_matrix<vector<vector<double> >, vector<double> >(rows_count, rows_count);
     double sum = 0; // sum of bit_matrix_2
     double r0 = 0; // average of bit_matrix_2, r0 = sum / k;
 
@@ -34,10 +34,10 @@ bit_matrix _correlation_calculation(bit_matrix bit_matrix_1, int k, int rows_cou
     debug_matrix<vector<vector<double> > , vector<double> >(_double_matrix_2);
 
     //      step 3
-    bit_matrix _bit_matrix_3 = new_matrix<bit_matrix, bit_vector>(rows_count, T0);
+    bit_matrix _bit_matrix_3 = new_matrix<bit_matrix, bit_vector>(rows_count, rows_count);
     r0 = sum / double(k);
     for (int i=0; i<rows_count; i++){
-        for(int j=0; j<T0; j++){
+        for(int j=0; j<rows_count; j++){
             if(_double_matrix_2[i][j] >= r0) _bit_matrix_3[i][j] = 1;
             else{
                 _bit_matrix_3[i][j] = 0;
